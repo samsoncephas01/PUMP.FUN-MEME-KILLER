@@ -1,0 +1,6 @@
+{
+  "name": "PUMP.FUN — MEME KILLER",
+  "description": "An independent, satirical critique of FOMO, rapid token launches, and the changing culture of Solana meme coins.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
