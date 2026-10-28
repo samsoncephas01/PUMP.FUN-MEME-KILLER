@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageSquarePlus, MessageCircle, ArrowUp, Info, AlertTriangle, X } from 'lucide-react';
+import { MessageSquare, ArrowUp, Info, X } from 'lucide-react';
 import { SITE_CONFIG } from '../config/siteConfig';
 
 interface CommunityCallProps {
@@ -9,12 +9,11 @@ interface CommunityCallProps {
 export const CommunityCall: React.FC<CommunityCallProps> = ({
   onOpenConfessionModal,
 }) => {
-  const [socialAlertOpen, setSocialAlertOpen] = useState(false);
+  const [socialNoticeOpen, setSocialNoticeOpen] = useState(false);
 
-  const handleFollowConversation = () => {
-    // Honest handling of unconfigured social link
+  const handleJoinConversation = () => {
     if (!SITE_CONFIG.socials.twitter.configured) {
-      setSocialAlertOpen(true);
+      setSocialNoticeOpen(true);
     } else if (SITE_CONFIG.socials.twitter.url) {
       window.open(SITE_CONFIG.socials.twitter.url, '_blank', 'noopener,noreferrer');
     }
@@ -25,79 +24,89 @@ export const CommunityCall: React.FC<CommunityCallProps> = ({
   };
 
   return (
-    <section className="py-20 sm:py-28 bg-[#0a0a0a] border-b border-[#1c1c1c] relative overflow-hidden">
+    <section className="py-24 sm:py-32 bg-[#080A08] border-b border-[#181D18] relative overflow-hidden">
+      
+      {/* Background Echo of the Desolate Digital Landscape */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none opacity-20">
+        <img
+          src="/hero-cemetery.jpg"
+          alt="Desolate digital relics"
+          className="w-full h-full object-cover filter grayscale"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080A08] via-[#080A08]/90 to-[#080A08]" />
+      </div>
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
 
-        {/* Section Label */}
+        {/* Section Tag */}
         <div className="inline-flex items-center gap-2 mb-4">
-          <span className="font-mono-degen text-xs tracking-widest text-[#B5FF32] uppercase px-3 py-1 bg-[#121c08] border border-[#B5FF32]/30">
-            06. YOUR TURN
+          <span className="font-mono-tech text-xs tracking-widest text-[#B5FF32] uppercase px-3 py-1 bg-[#121A0F] border border-[#1f261f]">
+            FINAL // THE CALL
           </span>
         </div>
 
         {/* Headline */}
-        <h2 className="font-syne text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#F1F1E9] tracking-tight leading-tight mb-6">
-          ARE YOU HERE FOR THE MEME —<br />
-          <span className="text-[#FF3535]">OR JUST THE EXIT?</span>
+        <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-bold text-[#F1F1E9] tracking-tight leading-[1.08] mb-6">
+          STOP CHASING<br />
+          <span className="text-[#FF3535]">THE NEXT LAUNCH.</span>
         </h2>
 
         {/* Supporting Copy */}
-        <p className="max-w-2xl mx-auto text-base sm:text-lg text-[#b8b8b0] leading-relaxed mb-10">
-          Share your story. Question the machine. Bring the culture back into the conversation.
+        <p className="max-w-2xl mx-auto text-base sm:text-xl font-editorial text-[#858A82] leading-relaxed mb-10">
+          Question the incentives. Examine the cycle. Remember the people behind the tickers.
         </p>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-10">
-          {/* 1. Share Confession */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-12">
+          {/* 1. Join Conversation */}
+          <button
+            type="button"
+            onClick={handleJoinConversation}
+            className="w-full sm:w-auto px-7 py-3.5 bg-[#B5FF32] hover:bg-[#c6ff59] text-[#080A08] font-mono-tech text-xs sm:text-sm font-bold tracking-wider transition-all shadow-[0_0_20px_rgba(181,255,50,0.25)] border border-[#B5FF32] flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <MessageSquare className="w-4 h-4" />
+            <span>JOIN THE CONVERSATION</span>
+          </button>
+
+          {/* 2. Share Your Story */}
           <button
             type="button"
             onClick={onOpenConfessionModal}
-            className="w-full sm:w-auto px-6 py-3.5 bg-[#B5FF32] hover:bg-[#c4ff59] text-[#080808] font-mono-degen text-xs sm:text-sm font-bold tracking-wider transition-all shadow-[0_0_20px_rgba(181,255,50,0.25)] border border-[#B5FF32] flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-6 py-3.5 bg-[#111411] hover:bg-[#181D18] text-[#F1F1E9] border border-[#1f261f] hover:border-[#858A82] font-mono-tech text-xs sm:text-sm font-semibold tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
-            <MessageSquarePlus className="w-4 h-4" />
-            <span>SHARE YOUR CONFESSION</span>
+            <span>SHARE YOUR STORY</span>
           </button>
 
-          {/* 2. Follow Conversation (honest placeholder) */}
-          <button
-            type="button"
-            onClick={handleFollowConversation}
-            className="w-full sm:w-auto px-6 py-3.5 bg-[#141414] hover:bg-[#202020] text-[#F1F1E9] border border-[#333333] hover:border-[#555555] font-mono-degen text-xs sm:text-sm font-semibold tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer"
-          >
-            <MessageCircle className="w-4 h-4 text-[#B5FF32]" />
-            <span>FOLLOW THE CONVERSATION</span>
-          </button>
-
-          {/* 3. Back to Top */}
+          {/* 3. Return to Top */}
           <button
             type="button"
             onClick={handleScrollToTop}
-            className="w-full sm:w-auto px-6 py-3.5 bg-[#101010] hover:bg-[#1a1a1a] text-[#888888] hover:text-[#F1F1E9] border border-[#222222] font-mono-degen text-xs sm:text-sm font-medium tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-5 py-3.5 bg-[#0D100D] hover:bg-[#141A14] text-[#858A82] hover:text-[#F1F1E9] border border-[#181D18] font-mono-tech text-xs sm:text-sm font-medium tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <ArrowUp className="w-4 h-4" />
-            <span>BACK TO THE TOP</span>
+            <span>BACK TO TOP</span>
           </button>
         </div>
 
-        {/* Honest social notice modal / banner */}
-        {socialAlertOpen && (
-          <div className="mt-6 max-w-lg mx-auto p-4 bg-[#141414] border border-[#333333] text-left relative animate-fade-in">
+        {/* Honest Configuration Notice if Social Channel is not set */}
+        {socialNoticeOpen && (
+          <div className="mt-6 max-w-lg mx-auto p-4 bg-[#0E120E] border border-[#1f261f] text-left relative animate-fade-in">
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-start gap-2.5">
                 <Info className="w-4 h-4 text-[#B5FF32] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-mono-degen text-xs font-bold text-[#F1F1E9] mb-1">
-                    COMMUNITY LINK NOT CONFIGURED
+                  <h4 className="font-mono-tech text-xs font-bold text-[#F1F1E9] mb-1">
+                    COMMUNITY CHANNEL UNLINKED
                   </h4>
-                  <p className="text-xs font-mono-degen text-[#888888] leading-relaxed">
-                    Social channels are currently set to placeholder in <code className="text-[#B5FF32]">src/config/siteConfig.ts</code>. To link an official community space, update the configuration file with your verified handle.
+                  <p className="text-xs font-mono-tech text-[#858A82] leading-relaxed">
+                    Social links are presently set to placeholder in <code className="text-[#B5FF32]">src/config/siteConfig.ts</code>. To link a live community discourse, specify your verified handle in the configuration file.
                   </p>
                 </div>
               </div>
               <button
                 type="button"
-                onClick={() => setSocialAlertOpen(false)}
-                className="text-[#666666] hover:text-[#F1F1E9] p-1"
+                onClick={() => setSocialNoticeOpen(false)}
+                className="text-[#656C62] hover:text-[#F1F1E9] p-1"
                 aria-label="Dismiss message"
               >
                 <X className="w-4 h-4" />
@@ -105,6 +114,13 @@ export const CommunityCall: React.FC<CommunityCallProps> = ({
             </div>
           </div>
         )}
+
+        {/* Closing Monumental Narrative */}
+        <div className="mt-14 pt-8 border-t border-[#141814]">
+          <p className="font-mono-tech text-xs uppercase tracking-widest text-[#656C62]">
+            {SITE_CONFIG.coreThesis}
+          </p>
+        </div>
 
       </div>
     </section>

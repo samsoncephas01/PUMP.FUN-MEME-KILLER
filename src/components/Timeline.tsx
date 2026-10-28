@@ -1,198 +1,206 @@
 import React, { useState } from 'react';
-import { History, Sparkles, Network, Coins, Crosshair, Zap, Info } from 'lucide-react';
+import { Sparkles, Radio, Zap, ArrowDownRight, Skull, Info } from 'lucide-react';
 
-interface Era {
+interface LifecyclePhase {
   id: string;
-  order: string;
+  stageNum: string;
+  timeframe: string;
   name: string;
-  quote: string;
-  context: string;
-  phenomenon: string;
+  headline: string;
+  narrative: string;
+  indicators: string[];
   icon: React.ElementType;
 }
 
-const ERAS: Era[] = [
+const PHASES: LifecyclePhase[] = [
   {
-    id: 'original-meme',
-    order: '01',
-    name: 'THE ORIGINAL MEME',
-    quote: 'People shared jokes because they were funny.',
-    context: 'The era of forums, image boards, and message threads. Humor existed for its own sake. Nobody expected a meme to pay their rent or turn a 100x return.',
-    phenomenon: 'Pure Cultural Capital — value was measured in laughter, upvotes, and organic virality.',
+    id: 'the-spark',
+    stageNum: '01',
+    timeframe: 'MINUTE 00',
+    name: 'THE SPARK',
+    headline: 'A viral joke becomes a contract.',
+    narrative: 'A trending tweet, an absurd animal photo, or a breaking news event is scraped and deployed onto a bonding curve in less than 30 seconds. No community exists yet—only an address and an algorithm.',
+    indicators: ['Instant automated minting', 'Zero initial holders', 'Speculative seeding'],
     icon: Sparkles,
   },
   {
-    id: 'community-era',
-    order: '02',
-    name: 'THE COMMUNITY ERA',
-    quote: 'Memes became identities, movements, and inside jokes.',
-    context: 'Subcultures formed around shared symbols. Memes became tribal markers, rallying cries, and collective digital identities spanning months or years.',
-    phenomenon: 'Sticky Alignment — belonging was emotional, durable, and built upon common lore.',
-    icon: Network,
+    id: 'the-feed',
+    stageNum: '02',
+    timeframe: 'MINUTE 15',
+    name: 'THE FEED',
+    headline: 'Attention is channeled into volume.',
+    narrative: 'The timeline catches wind. Snipers, bot accounts, and raiding circles coordinate replies. The sudden uptick in transaction velocity triggers trending tracker notifications across degen channels.',
+    indicators: ['Surge in automated mentions', 'Steep initial curve ascent', 'Raids on social feeds'],
+    icon: Radio,
   },
   {
-    id: 'tokenization-era',
-    order: '03',
-    name: 'THE TOKENIZATION ERA',
-    quote: 'Internet culture became tradable.',
-    context: 'Early meme coins proved that culture could possess direct market capitalization. For the first time, you could buy shares in an internet phenomenon.',
-    phenomenon: 'Monetized Sentiment — financial stakes entered the meme equation, creating powerful incentives.',
-    icon: Coins,
-  },
-  {
-    id: 'attention-war',
-    order: '04',
-    name: 'THE ATTENTION WAR',
-    quote: 'More launches competed for limited attention.',
-    context: 'As launch tools multiplied, the supply of tickers exploded while the collective attention span stayed fixed. Memes became shorter, louder, and more extreme to get noticed.',
-    phenomenon: 'Saturation — infinite new tickers fighting over finite liquidity and eyes.',
-    icon: Crosshair,
-  },
-  {
-    id: 'speedrun',
-    order: '05',
-    name: 'THE SPEEDRUN',
-    quote: 'Faster cycles, stronger FOMO, and communities at risk of becoming disposable.',
-    context: 'Instant bonding curves, automated scripts, and ten-minute lifecycles. Memes go from inception to peak to abandonment in hours, burning through community goodwill.',
-    phenomenon: 'Industrialized Velocity — where launching replaces building, and the joke is consumed by the exit.',
+    id: 'the-crest',
+    stageNum: '03',
+    timeframe: 'HOUR 01',
+    name: 'THE CREST',
+    headline: 'Peak FOMO and maximal conviction.',
+    narrative: 'Euphoria reaches its apex. Traders who hesitated earlier now rush in, convinced this token has graduated into a durable cultural movement. The chat fills with price targets and collective excitement.',
+    indicators: ['Retail volume arrives', 'Voice rooms peak with attendees', 'Urgent FOMO messaging'],
     icon: Zap,
+  },
+  {
+    id: 'the-reversal',
+    stageNum: '04',
+    timeframe: 'HOUR 03',
+    name: 'THE REVERSAL',
+    headline: 'Liquidity extracts faster than it entered.',
+    narrative: 'Deployers, sniper wallets, and rapid profit-takers exit simultaneously. Because bonding curve mechanics are inherently steep, a few concentrated sells produce catastrophic downward candles.',
+    indicators: ['Abrupt liquidity contraction', 'Panic selling cascades', 'Chat shifts from hype to fear'],
+    icon: ArrowDownRight,
+  },
+  {
+    id: 'the-graveyard',
+    stageNum: '05',
+    timeframe: 'DAY 01',
+    name: 'THE GRAVEYARD',
+    headline: 'Attention migrates to the next ticker.',
+    narrative: 'The Telegram group goes quiet. The deployer has already minted two newer contracts. The holders become bagholders, and another meme joins the thousands buried in the digital cemetery.',
+    indicators: ['Volume drops to zero', 'Social channels abandoned', 'Capital resets on a new contract'],
+    icon: Skull,
   },
 ];
 
 export const Timeline: React.FC = () => {
-  const [selectedEra, setSelectedEra] = useState<number>(4); // default to Speedrun
+  const [activePhaseIndex, setActivePhaseIndex] = useState(2); // default to The Crest
+  const activePhase = PHASES[activePhaseIndex];
 
   return (
-    <section id="timeline" className="py-20 sm:py-28 bg-[#080808] border-b border-[#1c1c1c] relative">
+    <section id="timeline" className="py-20 sm:py-28 bg-[#080A08] border-b border-[#181D18] relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
+        
         {/* Section Header */}
-        <div className="mb-14 sm:mb-18">
+        <div className="max-w-3xl mb-14 sm:mb-18">
           <div className="flex items-center gap-2 mb-3">
-            <span className="font-mono-degen text-xs tracking-widest text-[#B5FF32] uppercase">
-              03. THE EVOLUTION
-            </span>
-            <span className="text-[#333333]">/</span>
-            <span className="font-mono-degen text-xs tracking-wider text-[#777777]">
-              CULTURAL ARCHITECTURE
+            <span className="font-mono-tech text-xs tracking-widest text-[#B5FF32] uppercase">
+              03 // THE TIMELINE
             </span>
           </div>
 
-          <h2 className="font-syne text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#F1F1E9] tracking-tight leading-tight mb-6">
-            FROM INTERNET JOKE<br />
-            TO <span className="text-[#B5FF32]">FINANCIAL SPEEDRUN.</span>
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold text-[#F1F1E9] tracking-tight leading-tight mb-6">
+            THE CYCLE,<br />
+            <span className="text-[#B5FF32]">REPEATED.</span>
           </h2>
 
-          <p className="max-w-3xl text-base sm:text-lg text-[#b8b8b0] leading-relaxed">
-            How internet culture transitioned from shared peer-to-peer humor into an accelerated factory of financial instruments.
+          <p className="text-base sm:text-lg font-editorial text-[#858A82] leading-relaxed">
+            From the initial spark of an internet joke to the silent cemetery of abandoned contracts, observe how the modern launch cycle compresses cultural lifespan into hours.
           </p>
         </div>
 
-        {/* Interactive Timeline Layout */}
-        <div className="relative">
-          {/* Connecting line */}
-          <div className="hidden lg:block absolute left-0 right-0 top-1/2 -translate-y-1/2 h-0.5 bg-[#1f1f1f] z-0" />
+        {/* Phase Navigator Tabs */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-8">
+          {PHASES.map((phase, idx) => {
+            const isSelected = idx === activePhaseIndex;
+            const Icon = phase.icon;
 
-          {/* 5 Milestone Eras */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 relative z-10 mb-10">
-            {ERAS.map((era, index) => {
-              const isSelected = selectedEra === index;
-              const Icon = era.icon;
-
-              return (
-                <div
-                  key={era.id}
-                  onClick={() => setSelectedEra(index)}
-                  className={`p-5 border text-left cursor-pointer transition-all duration-200 bg-[#0c0c0c] flex flex-col justify-between group ${
-                    isSelected
-                      ? 'border-[#B5FF32] bg-[#11190a] shadow-[0_0_20px_rgba(181,255,50,0.12)]'
-                      : 'border-[#222222] hover:border-[#444444]'
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span
-                        className={`font-mono-degen text-xs font-bold ${
-                          isSelected ? 'text-[#B5FF32]' : 'text-[#666666]'
-                        }`}
-                      >
-                        PHASE {era.order}
-                      </span>
-                      <Icon
-                        className={`w-4 h-4 ${
-                          isSelected ? 'text-[#B5FF32]' : 'text-[#555555] group-hover:text-[#F1F1E9]'
-                        }`}
-                      />
-                    </div>
-
-                    <h3
-                      className={`font-syne text-sm sm:text-base font-extrabold tracking-wide mb-2 ${
-                        isSelected ? 'text-[#F1F1E9]' : 'text-[#aaaaaa] group-hover:text-[#F1F1E9]'
-                      }`}
-                    >
-                      {era.name}
-                    </h3>
-
-                    <p className="font-mono-degen text-xs text-[#888880] leading-snug line-clamp-2">
-                      “{era.quote}”
-                    </p>
-                  </div>
-
-                  <div className="mt-4 pt-3 border-t border-[#1a1a1a] flex items-center justify-between text-[10px] font-mono-degen">
-                    <span className={isSelected ? 'text-[#B5FF32]' : 'text-[#555555]'}>
-                      {isSelected ? 'ACTIVE VIEW' : 'CLICK TO EXPAND'}
+            return (
+              <button
+                key={phase.id}
+                type="button"
+                onClick={() => setActivePhaseIndex(idx)}
+                className={`p-4 border text-left transition-all duration-150 cursor-pointer flex flex-col justify-between group ${
+                  isSelected
+                    ? 'border-[#B5FF32] bg-[#141A14] shadow-[0_0_15px_rgba(181,255,50,0.12)]'
+                    : 'border-[#181D18] bg-[#0D100D] hover:border-[#2C352C]'
+                }`}
+              >
+                <div>
+                  <div className="flex items-center justify-between text-[10px] font-mono-tech mb-3">
+                    <span className={isSelected ? 'text-[#B5FF32]' : 'text-[#656C62]'}>
+                      STAGE {phase.stageNum}
                     </span>
-                    <span className="text-[#444444]">→</span>
+                    <span className="text-[#858A82]">{phase.timeframe}</span>
                   </div>
+
+                  <h3 className={`font-display text-sm font-bold tracking-wide mb-1 ${
+                    isSelected ? 'text-[#F1F1E9]' : 'text-[#858A82] group-hover:text-[#F1F1E9]'
+                  }`}>
+                    {phase.name}
+                  </h3>
+
+                  <p className="text-[11px] font-editorial text-[#656C62] line-clamp-1">
+                    {phase.headline}
+                  </p>
                 </div>
-              );
-            })}
-          </div>
 
-          {/* Deep Focus Box on Currently Selected Era */}
-          <div className="bg-[#0e0e0e] border border-[#222222] p-6 sm:p-10 relative">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-[#1c1c1c] mb-6">
-              <div>
-                <span className="font-mono-degen text-xs text-[#B5FF32] tracking-widest uppercase block mb-1">
-                  HISTORICAL FOCUS · PHASE {ERAS[selectedEra].order}
-                </span>
-                <h3 className="font-syne text-2xl sm:text-3xl font-extrabold text-[#F1F1E9]">
-                  {ERAS[selectedEra].name}
-                </h3>
-              </div>
+                <div className="mt-4 pt-2 border-t border-[#141814] flex items-center justify-between text-[9px] font-mono-tech">
+                  <span className={isSelected ? 'text-[#B5FF32]' : 'text-[#4A524A]'}>
+                    {isSelected ? 'ACTIVE VIEW' : 'EXPAND'}
+                  </span>
+                  <Icon className={`w-3.5 h-3.5 ${isSelected ? 'text-[#B5FF32]' : 'text-[#4A524A]'}`} />
+                </div>
+              </button>
+            );
+          })}
+        </div>
 
-              <div className="px-4 py-2 bg-[#141414] border border-[#2a2a2a] font-mono-degen text-xs text-[#B5FF32] self-start lg:self-auto">
-                {ERAS[selectedEra].phenomenon}
+        {/* Deep Dive Panel */}
+        <div className="bg-[#0D100D] border border-[#181D18] p-6 sm:p-10">
+          <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 pb-6 border-b border-[#181D18] mb-6">
+            <div>
+              <div className="flex items-center gap-3 text-xs font-mono-tech text-[#858A82] mb-1">
+                <span className="text-[#B5FF32] font-semibold">PHASE {activePhase.stageNum}</span>
+                <span>·</span>
+                <span>ESTIMATED DURATION: {activePhase.timeframe}</span>
               </div>
+              <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#F1F1E9]">
+                {activePhase.name} — “{activePhase.headline}”
+              </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <span className="font-mono-degen text-xs text-[#777777] uppercase tracking-wider block mb-2">
-                  THE PREMISE:
-                </span>
-                <p className="font-syne text-lg sm:text-xl font-bold text-[#F1F1E9] leading-snug">
-                  “{ERAS[selectedEra].quote}”
-                </p>
-              </div>
+            <div className="flex items-center gap-2 self-start lg:self-auto">
+              <button
+                type="button"
+                onClick={() => setActivePhaseIndex((prev) => (prev - 1 + PHASES.length) % PHASES.length)}
+                className="px-3 py-1.5 bg-[#111411] hover:bg-[#181D18] border border-[#1f261f] text-xs font-mono-tech text-[#858A82] hover:text-[#F1F1E9] transition-colors cursor-pointer"
+              >
+                ← PREV
+              </button>
+              <button
+                type="button"
+                onClick={() => setActivePhaseIndex((prev) => (prev + 1) % PHASES.length)}
+                className="px-3.5 py-1.5 bg-[#B5FF32] hover:bg-[#c6ff59] border border-[#B5FF32] text-xs font-mono-tech font-bold text-[#080A08] transition-colors cursor-pointer"
+              >
+                NEXT →
+              </button>
+            </div>
+          </div>
 
-              <div>
-                <span className="font-mono-degen text-xs text-[#777777] uppercase tracking-wider block mb-2">
-                  CULTURAL DYNAMICS:
-                </span>
-                <p className="text-sm sm:text-base text-[#b8b8b0] leading-relaxed">
-                  {ERAS[selectedEra].context}
-                </p>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-4">
+              <span className="font-mono-tech text-xs text-[#858A82] uppercase tracking-wider block">
+                NARRATIVE BREAKDOWN
+              </span>
+              <p className="font-editorial text-base sm:text-lg text-[#F1F1E9] leading-relaxed">
+                {activePhase.narrative}
+              </p>
+            </div>
+
+            <div className="bg-[#090B09] border border-[#181D18] p-5 space-y-3">
+              <span className="font-mono-tech text-xs text-[#B5FF32] uppercase tracking-wider block">
+                OBSERVABLE MARKERS
+              </span>
+              <ul className="space-y-2 text-xs font-mono-tech text-[#858A82]">
+                {activePhase.indicators.map((ind, i) => (
+                  <li key={i} className="flex items-center gap-2">
+                    <span className="w-1 h-1 bg-[#B5FF32] rounded-full" />
+                    <span>{ind}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
 
-        {/* Framing Clarification */}
-        <div className="mt-8 flex items-center gap-2 text-xs font-mono-degen text-[#777777]">
-          <Info className="w-3.5 h-3.5 text-[#666666] shrink-0" />
+        {/* Clear Framing Disclaimer */}
+        <div className="mt-6 flex items-center gap-2 text-xs font-mono-tech text-[#656C62]">
+          <Info className="w-3.5 h-3.5 shrink-0 text-[#656C62]" />
           <span>
-            This timeline presents an interpretation of internet meme culture, not a verified historical chronology with exact dates.
+            This timeline presents an illustrative model of meme token market compression, not a claim that every token follows the same trajectory.
           </span>
         </div>
 

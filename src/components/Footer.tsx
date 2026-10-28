@@ -1,5 +1,4 @@
 import React from 'react';
-import { Skull, AlertTriangle, ShieldCheck } from 'lucide-react';
 import { SITE_CONFIG } from '../config/siteConfig';
 
 interface FooterProps {
@@ -16,91 +15,61 @@ export const Footer: React.FC<FooterProps> = ({ onOpenModal }) => {
   };
 
   return (
-    <footer className="bg-[#050505] border-t border-[#1a1a1a] py-14 sm:py-20 text-[#888888] relative">
+    <footer className="bg-[#080A08] border-t border-[#181D18] py-14 sm:py-20 text-[#858A82] relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Footer Section */}
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-10 pb-12 border-b border-[#181818]">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-10 pb-12 border-b border-[#141814]">
+          
           {/* Brand & Closing Quote */}
           <div className="max-w-md space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 border border-[#B5FF32]/60 flex items-center justify-center bg-[#0d0d0d] text-[#B5FF32]">
-                <Skull className="w-4 h-4 text-[#B5FF32]" />
+            <div className="flex items-center gap-3">
+              <div className="w-7 h-7 rounded-sm border border-[#1f261f] bg-[#0d100d] flex items-center justify-center">
+                <div className="w-2.5 h-4 rounded-full border border-[#B5FF32]/80 flex flex-col overflow-hidden rotate-45">
+                  <div className="w-full h-1/2 bg-[#00F0FF]/80" />
+                  <div className="w-full h-1/2 bg-[#B5FF32]" />
+                </div>
               </div>
-              <span className="font-syne text-base font-extrabold tracking-wider text-[#F1F1E9]">
+              <span className="font-display text-sm font-bold tracking-wider text-[#F1F1E9]">
                 PUMP.FUN — MEME KILLER
               </span>
             </div>
 
-            <p className="font-mono-degen text-xs sm:text-sm text-[#B5FF32] font-semibold tracking-wider uppercase">
+            <p className="font-mono-tech text-xs sm:text-sm text-[#B5FF32] font-semibold tracking-wider uppercase">
               “{SITE_CONFIG.closingQuote}”
             </p>
 
-            <p className="text-xs text-[#666666] leading-relaxed">
-              An independent, satirical, anti-establishment critique exploring the friction-free token launch machine and speculative dynamics in Solana meme coin culture.
+            <p className="text-xs font-editorial text-[#656C62] leading-relaxed">
+              An independent, satirical cultural critique exploring frictionless launchpads, speculative hyper-vigilance, and the disposable attention economy in Solana meme coin culture.
             </p>
           </div>
 
           {/* Navigation & Informational Links */}
           <div className="flex flex-col sm:flex-row gap-8 sm:gap-14">
             <div>
-              <span className="font-mono-degen text-xs font-bold text-[#F1F1E9] uppercase tracking-wider block mb-3">
+              <span className="font-mono-tech text-xs font-semibold text-[#F1F1E9] uppercase tracking-wider block mb-3">
                 SECTIONS
               </span>
-              <ul className="space-y-2 text-xs font-mono-degen">
-                <li>
-                  <a
-                    href="#machine"
-                    onClick={(e) => handleScrollTo(e, '#machine')}
-                    className="hover:text-[#B5FF32] transition-colors"
-                  >
-                    The Machine
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#damage"
-                    onClick={(e) => handleScrollTo(e, '#damage')}
-                    className="hover:text-[#B5FF32] transition-colors"
-                  >
-                    The Damage
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#timeline"
-                    onClick={(e) => handleScrollTo(e, '#timeline')}
-                    className="hover:text-[#B5FF32] transition-colors"
-                  >
-                    The Timeline
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#manifesto"
-                    onClick={(e) => handleScrollTo(e, '#manifesto')}
-                    className="hover:text-[#B5FF32] transition-colors"
-                  >
-                    The Manifesto
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#confessions"
-                    onClick={(e) => handleScrollTo(e, '#confessions')}
-                    className="hover:text-[#B5FF32] transition-colors"
-                  >
-                    Confessions
-                  </a>
-                </li>
+              <ul className="space-y-2 text-xs font-mono-tech">
+                {SITE_CONFIG.navLinks.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleScrollTo(e, link.href)}
+                      className="hover:text-[#B5FF32] transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div>
-              <span className="font-mono-degen text-xs font-bold text-[#F1F1E9] uppercase tracking-wider block mb-3">
+              <span className="font-mono-tech text-xs font-semibold text-[#F1F1E9] uppercase tracking-wider block mb-3">
                 LEGAL & ETHICS
               </span>
-              <ul className="space-y-2 text-xs font-mono-degen">
+              <ul className="space-y-2 text-xs font-mono-tech">
                 <li>
                   <button
                     type="button"
@@ -116,7 +85,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenModal }) => {
                     onClick={() => onOpenModal('privacy')}
                     className="hover:text-[#B5FF32] transition-colors cursor-pointer text-left"
                   >
-                    Privacy
+                    Privacy Notice
                   </button>
                 </li>
               </ul>
@@ -126,17 +95,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenModal }) => {
 
         {/* Mandatory Full Disclaimer Paragraph */}
         <div className="pt-8 space-y-4">
-          <div className="p-4 bg-[#090909] border border-[#1e1e1e]">
-            <p className="text-[11px] font-mono-degen text-[#666666] leading-relaxed">
-              <span className="text-[#888888] font-bold">DISCLAIMER: </span>
+          <div className="p-4 bg-[#0B0E0B] border border-[#141814]">
+            <p className="text-[11px] font-mono-tech text-[#656C62] leading-relaxed">
+              <span className="text-[#858A82] font-bold">DISCLAIMER: </span>
               {SITE_CONFIG.disclaimerFull}
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono-degen text-[#555555] pt-2">
-            <span>© {new Date().getFullYear()} PUMP.FUN — MEME KILLER. ALL RIGHTS RESERVED.</span>
-            <span className="mt-2 sm:mt-0 text-[#444444]">
-              PARODIC CULTURAL COMMENTARY · NOT FINANCIAL ADVICE
+          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono-tech text-[#4A524A] pt-2">
+            <span>© {new Date().getFullYear()} PUMP.FUN: MEME KILLER. ALL RIGHTS RESERVED.</span>
+            <span className="mt-2 sm:mt-0 text-[#656C62]">
+              INDEPENDENT CULTURAL CRITIQUE · NOT FINANCIAL ADVICE
             </span>
           </div>
         </div>

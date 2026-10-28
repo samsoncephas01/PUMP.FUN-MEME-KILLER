@@ -1,126 +1,116 @@
 import React from 'react';
-import { Users2, Eye, Skull, Radio, AlertTriangle } from 'lucide-react';
+import { Users, Eye, TrendingDown, Radio, AlertTriangle } from 'lucide-react';
 
-interface DamageCard {
+interface DamageChapter {
   id: string;
-  number: string;
+  num: string;
+  label: string;
   title: string;
-  quote: string;
-  analysis: string;
+  thesis: string;
+  narrative: string;
   icon: React.ElementType;
-  tag: string;
 }
 
-const CARDS: DamageCard[] = [
+const CHAPTERS: DamageChapter[] = [
   {
-    id: 'disposable-communities',
-    number: '01',
-    title: 'DISPOSABLE COMMUNITIES',
-    quote: 'Communities can be built around temporary hype rather than lasting shared interests. When the chart cools, the conversation can disappear with it.',
-    analysis: 'Telegram groups that swell to 5,000 members in two hours can evaporate by dawn. When financial return is the sole glue holding individuals together, the death of momentum invariably brings the death of fellowship.',
-    icon: Users2,
-    tag: 'FRAGMENTATION',
+    id: 'disposable-tribe',
+    num: '01',
+    label: 'SOCIAL FRAGMENTATION',
+    title: 'THE DISPOSABLE TRIBE',
+    thesis: 'When a ticker is the only shared interest, community lasts only as long as the green candle.',
+    narrative: 'Telegram groups surge to 4,000 members in minutes, fueled by collective euphoria. But when momentum wanes, the fellowship fractures into mutual recrimination and silence. True digital subcultures require patience and shared lore—both are scorched by rapid deployment cycles.',
+    icon: Users,
   },
   {
-    id: 'permanent-fomo',
-    number: '02',
-    title: 'PERMANENT FOMO',
-    quote: 'Every new launch competes for attention. Traders feel pressured to watch everything, chase every narrative, and fear being the only person who missed the move.',
-    analysis: 'Attention spans shrink down to five-minute intervals. The psychological toll of 24/7 hyper-vigilance converts internet users from participants in a fun digital subculture into exhausted screen-glued watchers.',
+    id: 'chronic-vigilance',
+    num: '02',
+    label: 'PSYCHOLOGICAL TOLL',
+    title: 'CHRONIC HYPER-VIGILANCE',
+    thesis: 'Traders feel compelled to monitor feeds 24/7, terrified that looking away means missing the move.',
+    narrative: 'With dozens of launches competing for attention every hour, the fear of missing out ceases to be an occasional emotion—it becomes a permanent neurological state. Participants convert from curious internet citizens into exhausted watchers of rapid charts.',
     icon: Eye,
-    tag: 'HYPER-VIGILANCE',
   },
   {
-    id: 'exit-liquidity',
-    number: '03',
-    title: 'EXIT LIQUIDITY',
-    quote: 'When buyers enter without understanding the risks, they may end up holding assets that early sellers have already exited.',
-    analysis: 'The speed of automated launches favors those with the fastest access, snipers, and automated alerts. Retail enthusiasm arriving at peak euphoria often provides the final exit volume for earlier traders.',
-    icon: Skull,
-    tag: 'ASYMMETRY',
+    id: 'asymmetric-exit',
+    num: '03',
+    label: 'LIQUIDITY EXTRACTION',
+    title: 'THE ASYMMETRIC EXIT',
+    thesis: 'Unsuspecting buyers frequently absorb the final exit volume of earlier actors.',
+    narrative: 'Speed advantages, automated sniping scripts, and private wallet clusters allow early entrants to capture the majority of bonding curve expansions. Late entrants arriving on social hype unknowingly serve as the final liquid counterparties.',
+    icon: TrendingDown,
   },
   {
-    id: 'culture-lost',
-    number: '04',
-    title: 'CULTURE LOST IN THE NOISE',
-    quote: 'When every joke becomes a ticker and every trend becomes a launch, the creative culture behind memes risks becoming secondary to speculation.',
-    analysis: 'Internet memes used to thrive as open-source cultural satire, art, and humor. When every viral tweet or absurdity is instantly monetized and tokenized, the humor is overshadowed by market sentiment.',
+    id: 'erosion-of-culture',
+    num: '04',
+    label: 'CULTURAL COST',
+    title: 'CULTURE STRIPPED FOR PARTS',
+    thesis: 'When every viral joke is immediately financialized, the humor is overshadowed by market sentiment.',
+    narrative: 'Internet memes once functioned as open-source satire, shared absurdity, and collective creative expression. When each meme is rushed to market as a tradable contract, the joke is reduced to a five-minute vehicle for extraction.',
     icon: Radio,
-    tag: 'COMMODIFICATION',
   },
 ];
 
 export const DamageCards: React.FC = () => {
   return (
-    <section id="damage" className="py-20 sm:py-28 bg-[#090909] border-b border-[#1c1c1c] relative">
+    <section id="damage" className="py-20 sm:py-28 bg-[#0B0E0B] border-b border-[#181D18] relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="mb-14 sm:mb-18">
+        <div className="max-w-3xl mb-14 sm:mb-18">
           <div className="flex items-center gap-2 mb-3">
-            <span className="font-mono-degen text-xs tracking-widest text-[#B5FF32] uppercase">
-              02. THE CULTURE
-            </span>
-            <span className="text-[#333333]">/</span>
-            <span className="font-mono-degen text-xs tracking-wider text-[#777777]">
-              CULTURAL IMPACT
+            <span className="font-mono-tech text-xs tracking-widest text-[#B5FF32] uppercase">
+              02 // HUMAN IMPACT
             </span>
           </div>
 
-          <h2 className="font-syne text-3xl sm:text-5xl md:text-6xl font-extrabold text-[#F1F1E9] tracking-tight leading-tight mb-6">
-            WHAT HAPPENS WHEN<br />
-            <span className="text-[#FF3535]">EVERYTHING</span> BECOMES A LAUNCH?
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-bold text-[#F1F1E9] tracking-tight leading-tight mb-6">
+            EVERY LAUNCH HAS<br />
+            <span className="text-[#FF3535]">A HUMAN SIDE.</span>
           </h2>
 
-          <p className="max-w-3xl text-base sm:text-lg text-[#b8b8b0] leading-relaxed">
-            The friction-free token mill changed more than just the chart. It reshaped how internet communities form, how people spend their attention, and what happens to the art of the meme.
+          <p className="text-base sm:text-lg font-editorial text-[#858A82] leading-relaxed">
+            Beyond the rapid tickers and automated curves lies a tangible cultural consequence: broken trust, drained attention, and communities engineered to be discarded after the trade.
           </p>
         </div>
 
-        {/* 4 Brutalist Editorial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {CARDS.map((card) => {
-            const Icon = card.icon;
+        {/* Asymmetric 2x2 Editorial Narrative Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12">
+          {CHAPTERS.map((ch) => {
+            const Icon = ch.icon;
+
             return (
               <div
-                key={card.id}
-                className="bg-[#0e0e0e] border border-[#222222] hover:border-[#B5FF32]/70 p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 relative group overflow-hidden"
+                key={ch.id}
+                className="bg-[#0E120E] border border-[#181D18] hover:border-[#2C352C] transition-all duration-200 p-6 sm:p-8 flex flex-col justify-between group relative"
               >
-                {/* Background Number Watermark */}
-                <span className="absolute -top-4 -right-2 font-syne text-8xl sm:text-9xl font-black text-[#161616] group-hover:text-[#1c2414] transition-colors pointer-events-none select-none">
-                  {card.number}
-                </span>
-
-                <div className="relative z-10 space-y-4">
-                  {/* Top Bar on Card */}
-                  <div className="flex items-center justify-between border-b border-[#1c1c1c] pb-3">
-                    <span className="font-mono-degen text-[11px] font-bold text-[#B5FF32] tracking-widest">
-                      CARD {card.number} · {card.tag}
-                    </span>
-                    <Icon className="w-4 h-4 text-[#777777] group-hover:text-[#B5FF32] transition-colors" />
+                <div>
+                  {/* Top Metadata */}
+                  <div className="flex items-center justify-between border-b border-[#181D18] pb-3 mb-4 text-[10px] font-mono-tech">
+                    <span className="text-[#B5FF32] font-semibold">{ch.num} · {ch.label}</span>
+                    <Icon className="w-3.5 h-3.5 text-[#656C62] group-hover:text-[#B5FF32] transition-colors" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-syne text-xl sm:text-2xl font-extrabold text-[#F1F1E9] group-hover:text-white transition-colors">
-                    {card.title}
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-[#F1F1E9] group-hover:text-white transition-colors mb-3">
+                    {ch.title}
                   </h3>
 
-                  {/* Primary Quote */}
-                  <p className="font-mono-degen text-sm sm:text-base text-[#e2e2d8] leading-relaxed border-l-2 border-[#B5FF32] pl-3 py-1 bg-[#131510]/50">
-                    “{card.quote}”
+                  {/* Thesis Lead-in */}
+                  <p className="font-editorial text-sm sm:text-base font-medium text-[#c8cebe] leading-snug mb-4 border-l-2 border-[#B5FF32] pl-3 py-0.5">
+                    “{ch.thesis}”
                   </p>
 
-                  {/* Editorial Analysis */}
-                  <p className="text-xs sm:text-sm text-[#9e9e94] leading-relaxed pt-2">
-                    {card.analysis}
+                  {/* Narrative Body */}
+                  <p className="font-editorial text-xs sm:text-sm text-[#858A82] leading-relaxed">
+                    {ch.narrative}
                   </p>
                 </div>
 
-                {/* Bottom Card Footer */}
-                <div className="pt-6 mt-6 border-t border-[#181818] flex items-center justify-between text-[11px] font-mono-degen text-[#555555]">
-                  <span>PUMP.FUN CRITIQUE</span>
-                  <span className="text-[#888888] group-hover:text-[#B5FF32] transition-colors">
-                    REF 02-{card.number}
+                {/* Footer Tag */}
+                <div className="pt-6 mt-6 border-t border-[#141814] flex items-center justify-between text-[10px] font-mono-tech text-[#4A524A]">
+                  <span>MEME KILLER INVESTIGATION</span>
+                  <span className="text-[#656C62] group-hover:text-[#F1F1E9] transition-colors">
+                    EXP-02.{ch.num}
                   </span>
                 </div>
               </div>
@@ -128,11 +118,11 @@ export const DamageCards: React.FC = () => {
           })}
         </div>
 
-        {/* Editorial Disclaimer Notice */}
-        <div className="mt-10 p-4 bg-[#0d0d0d] border border-[#222222] flex items-start gap-3">
-          <AlertTriangle className="w-4 h-4 text-[#888888] shrink-0 mt-0.5" />
-          <p className="text-xs font-mono-degen text-[#888888] leading-relaxed">
-            Note: This critique does not claim that every token launch is a scam, nor that speculative platforms intentionally harm every participant. It is an exploration of collective market psychology, structural incentives, and cultural shifts in decentralized spaces.
+        {/* Editorial Disclosure */}
+        <div className="p-4 bg-[#080A08] border border-[#181D18] flex items-start gap-3">
+          <AlertTriangle className="w-4 h-4 text-[#858A82] shrink-0 mt-0.5" />
+          <p className="text-xs font-mono-tech text-[#656C62] leading-relaxed">
+            Note: This analysis reflects observable market psychology and cultural trends across decentralized launch ecosystems. It does not claim that every participant loses money or that every token lacks genuine community passion.
           </p>
         </div>
 
